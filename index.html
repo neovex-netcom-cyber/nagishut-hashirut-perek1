@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>נגישות השירות — פרק 1 · הדרכה דיגיטלית לארגונים</title>
+<meta name="description" content="סרטון הדרכה בעברית על נגישות השירות לעובדים, עם בדיקת ידע ורישום השלמות. רישיון ארגוני חד־פעמי.">
+<style>
+@font-face{font-family:"Frank Ruhl Libre";src:url(fonts/frl-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Frank Ruhl Libre";src:url(fonts/frl-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Assistant;src:url(fonts/ass-300.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:Assistant;src:url(fonts/ass-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Assistant;src:url(fonts/ass-500.woff2) format("woff2");font-weight:500;font-display:swap}
+
+html, body { background:#f2ece2 !important; color:#17130f; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Assistant,system-ui,sans-serif;font-weight:400;font-size:17px;line-height:1.65;color:var(--ink);background:var(--paper);overflow-x:hidden}
+body{background:#f2ece2;color:#17130f}
+
+:root{
+  --paper:#f2ece2;--paper-2:#e9e1d5;--paper-hi:#fbf7f0;
+  --ink:#17130f;--ink-soft:#3a322b;--muted:#6e6357;--muted-2:#9a8e80;
+  --accent:#b04a2a;--accent-2:#c08a2e;--accent-wash:rgba(176,74,42,.10);
+  --line:rgba(23,19,15,.20);--line-soft:rgba(23,19,15,.10);--line-hair:rgba(23,19,15,.055);
+  --focus:#b04a2a;
+  --serif:"Frank Ruhl Libre",Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:Assistant,system-ui,sans-serif;
+  --logo:19px;--logo-sub:9.5px;--nav:13px;--eyebrow:11.5px;
+  --h1:clamp(42px,7.2vw,96px);--h1-lh:.96;
+  --lead:18px;--btn:12px;--btn-h:44px;
+  --spec-lg:34px;--spec-md:18px;--spec-sm:11.5px;--foot:11.5px;
+  --track-caps:.16em;--radius:2px;
+  --header-x:48px;--header-y:22px;--header-h:52px;
+  --page-x:48px;--hero-y:48px;--hero-gap:22px;--hero-max:1100px;
+  --aside-w:280px;--gap-col:48px;
+  --footer-x:48px;--footer-y:28px;
+  --grain-op:.11;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --ease-ink:cubic-bezier(0.33,0.02,0.28,1);
+  --enter-dur:.9s;--bleed-dur:.72s;
+  --sec-y:88px;
+}
+html, body { background: var(--paper); }
+
+@property --bleed { syntax: "<percentage>"; inherits: false; initial-value: 124%; }
+
+/* —— Backdrop —— */
+.paper{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-color:#f2ece2;
+  background-image:
+    radial-gradient(ellipse 70% 52% at 18% 8%, rgba(255,252,246,.92) 0%, rgba(255,252,246,.34) 38%, transparent 68%),
+    radial-gradient(ellipse 90% 70% at 82% 96%, rgba(120,100,74,.16) 0%, rgba(120,100,74,.06) 42%, transparent 74%),
+    linear-gradient(168deg, #f6f1e8 0%, #f2ece2 46%, #ece4d7 100%),
+    linear-gradient(180deg, rgba(23,19,15,.05) 0%, transparent 14%, transparent 86%, rgba(23,19,15,.07) 100%)}
+.paper::after{display:none;content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(23,19,15,.07), transparent 34%),
+    radial-gradient(circle at 46% 72%, rgba(176,74,42,.09), transparent 36%),
+    radial-gradient(circle at 74% 18%, rgba(23,19,15,.05), transparent 30%)}
+html.no-canvas .paper::after{display:block}
+html.no-canvas canvas#bloom{display:none}
+
+canvas#bloom{position:fixed;inset:0;width:100%;height:100%;z-index:1;display:block;pointer-events:none;filter:blur(30px);opacity:.86;mix-blend-mode:multiply}
+
+.rules{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:
+    repeating-linear-gradient(180deg, rgba(23,19,15,.055) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(90deg, rgba(23,19,15,.040) 0 1px, transparent 1px 160px);
+  -webkit-mask-image:radial-gradient(ellipse 78% 66% at 50% 44%, #000 0%, #000 40%, rgba(0,0,0,.30) 72%, transparent 100%);
+  mask-image:radial-gradient(ellipse 78% 66% at 50% 44%, #000 0%, #000 40%, rgba(0,0,0,.30) 72%, transparent 100%)}
+.rule-v{position:fixed;right:8.6vw;top:0;bottom:0;width:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg, transparent 0%, rgba(23,19,15,.22) 11%, rgba(23,19,15,.22) 89%, transparent 100%)}
+.marks{position:fixed;inset:26px;z-index:2;pointer-events:none;opacity:.5}
+.marks span{position:absolute;width:18px;height:18px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'%3E%3Ccircle cx='9' cy='9' r='6.5' stroke='%2317130F' stroke-opacity='.38' stroke-width='.8'/%3E%3Cpath d='M9 1v16M1 9h16' stroke='%2317130F' stroke-opacity='.38' stroke-width='.8'/%3E%3C/svg%3E") center/contain no-repeat}
+.marks .tl{top:0;right:0}.marks .tr{top:0;left:0}.marks .bl{bottom:0;right:0}.marks .br{bottom:0;left:0}
+
+.sheen{position:fixed;inset:-20% -60%;z-index:3;pointer-events:none;
+  background:linear-gradient(104deg, transparent 0%, rgba(255,255,255,.40) 46%, transparent 60%, transparent 100%);
+  opacity:.28;animation:sheen 34s cubic-bezier(.45,0,.55,1) infinite}
+.vign{position:fixed;inset:0;z-index:4;pointer-events:none;
+  background:radial-gradient(ellipse 92% 84% at 50% 46%, transparent 0%, transparent 52%, rgba(60,48,34,.07) 78%, rgba(60,48,34,.14) 100%)}
+.grain{position:fixed;inset:-50%;width:200%;height:200%;z-index:40;pointer-events:none;opacity:var(--grain-op);mix-blend-mode:multiply;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;animation:grain 1.05s steps(4) infinite}
+
+/* —— Page —— */
+.page{position:relative;z-index:10;min-height:100dvh}
+.wrap{max-width:var(--hero-max);margin:0 auto;padding:0 var(--page-x);width:100%}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:30;height:auto;min-height:var(--header-h);
+  padding:var(--header-y) var(--header-x) 14px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:rgba(242,236,226,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.site-header.scrolled{border-bottom-color:var(--line-soft);background:rgba(242,236,226,.92)}
+.brand{font-family:var(--serif);font-size:var(--logo);font-weight:400;letter-spacing:-.01em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand-sub{font-family:var(--mono);font-size:var(--logo-sub);letter-spacing:var(--track-caps);color:var(--muted-2);vertical-align:super;margin-inline-start:8px;text-transform:uppercase}
+.nav-desk{display:flex;gap:28px;align-items:center}
+.nav-desk a{position:relative;font-family:var(--serif);font-size:var(--nav);letter-spacing:.01em;color:var(--ink-soft);text-decoration:none}
+.nav-desk a::after{content:"";position:absolute;inset-inline:0;bottom:-6px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:100% 50%;transition:transform .28s var(--ease-out)}
+.nav-desk a:hover::after,.nav-desk a:focus-visible::after{transform:scaleX(1)}
+.cta{height:34px;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  color:var(--accent);border:1px solid rgba(176,74,42,.42);background:var(--accent-wash);border-radius:var(--radius);
+  transition:background .22s var(--ease-out),border-color .22s var(--ease-out),transform .22s var(--ease-out)}
+.cta:hover{border-color:var(--accent);background:rgba(176,74,42,.16);transform:translateY(-1px)}
+.burger{display:none;background:none;border:0;padding:8px;cursor:pointer;flex-direction:column;gap:5px}
+.burger span{display:block;width:18px;height:1.5px;background:var(--ink)}
+.menu{position:fixed;inset:0;z-index:80;background:rgba(242,236,226,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 32px;gap:26px;
+  transform:translateY(-100%);transition:transform .45s var(--ease-out);pointer-events:none}
+.menu.open{transform:none;pointer-events:auto}
+.menu a{font-family:var(--serif);font-size:22px;color:var(--ink);text-decoration:none}
+.menu .cta{font-size:12px}
+
+/* Buttons */
+.btn{border-radius:var(--radius);height:var(--btn-h);padding:0 20px;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:var(--btn);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  transition:background .22s var(--ease-out),color .22s var(--ease-out),border-color .22s var(--ease-out),transform .22s var(--ease-out)}
+.btn--ink{color:var(--paper-hi);border:1px solid var(--ink);
+  background:linear-gradient(180deg,#241d17 0%,#17130f 58%,#0e0b09 100%);
+  box-shadow:0 14px 34px rgba(23,19,15,.24),inset 0 1px 0 rgba(255,255,255,.10)}
+.btn--ink:hover{background:linear-gradient(180deg,#302720 0%,#1e1813 58%,#12100d 100%);transform:translateY(-1px)}
+.btn--ink:active{transform:translateY(0)}
+.btn--ghost{color:var(--ink);border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.46) 0%,rgba(233,225,213,.16) 100%)}
+.btn--ghost:hover{border-color:var(--ink);background:linear-gradient(180deg,rgba(255,255,255,.70) 0%,rgba(233,225,213,.30) 100%);transform:translateY(-1px)}
+.btn--oxide{color:var(--paper-hi);border:1px solid var(--accent);
+  background:linear-gradient(180deg,#c45a36 0%,#b04a2a 58%,#8e3a20 100%);
+  box-shadow:0 14px 34px rgba(176,74,42,.28),inset 0 1px 0 rgba(255,255,255,.12)}
+.btn--oxide:hover{background:linear-gradient(180deg,#d06842 0%,#c05230 58%,#9a4024 100%);transform:translateY(-1px)}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:var(--radius)}
+::selection{background:rgba(176,74,42,.22);color:var(--ink)}
+
+/* Hero */
+.hero{padding:var(--hero-y) 0 64px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) var(--aside-w);gap:var(--gap-col);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:var(--hero-gap);min-width:0}
+.eyebrow{font-family:var(--mono);font-size:var(--eyebrow);letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
+.tick{display:inline-block;width:34px;height:1px;background:var(--line);vertical-align:middle;transform-origin:100% 50%;flex-shrink:0}
+
+h1{font-family:var(--serif);font-weight:400;font-size:var(--h1);line-height:var(--h1-lh);letter-spacing:-.03em;color:var(--ink);margin:0}
+h1 .line{display:block}
+h1 .word{display:inline-block;white-space:nowrap}
+.ltr{--bleed:124%;--ox:50%;--oy:58%;display:inline-block;
+  -webkit-mask-image:radial-gradient(circle at var(--ox) var(--oy),#000 0%,#000 var(--bleed),rgba(0,0,0,.62) calc(var(--bleed)*1.14),rgba(0,0,0,.20) calc(var(--bleed)*1.30),transparent calc(var(--bleed)*1.46));
+  mask-image:radial-gradient(circle at var(--ox) var(--oy),#000 0%,#000 var(--bleed),rgba(0,0,0,.62) calc(var(--bleed)*1.14),rgba(0,0,0,.20) calc(var(--bleed)*1.30),transparent calc(var(--bleed)*1.46))}
+.ltr--spot{color:var(--accent)}
+
+.lead{font-family:var(--serif);font-size:var(--lead);line-height:1.58;letter-spacing:-.01em;color:var(--ink-soft);max-width:48ch;margin:0;font-weight:400}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.meta-chips{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.meta-chips span::before{content:"";display:inline-block;width:6px;height:1px;background:var(--accent);margin-inline-end:8px;vertical-align:middle}
+
+/* Specimen */
+aside.specimen{border:1px solid var(--line-soft);
+  background:linear-gradient(180deg,rgba(255,255,255,.52) 0%,rgba(233,225,213,.30) 100%);
+  border-radius:var(--radius);padding:22px 22px 18px;display:flex;flex-direction:column;gap:14px}
+.spec-title{font-family:var(--mono);font-size:11.5px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--muted);margin:0;font-weight:400}
+.spec-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.spec-lg{font-family:var(--serif);font-size:var(--spec-lg);font-weight:400;letter-spacing:-.02em;color:var(--ink)}
+.spec-price{font-family:var(--serif);font-size:42px;font-weight:400;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.spec-md{font-family:var(--serif);font-size:var(--spec-md);color:var(--ink)}
+.spec-sm{font-family:var(--mono);font-size:var(--spec-sm);letter-spacing:.08em;color:var(--ink-soft);text-transform:uppercase}
+.spec-tag{font-family:var(--mono);font-size:var(--spec-sm);color:var(--muted-2);letter-spacing:.06em;text-transform:uppercase}
+.spec-rule{height:1px;background:var(--line-soft);transform-origin:100% 50%}
+.swatches{display:flex;gap:8px}
+.swatches i{display:block;width:26px;height:26px;border:1px solid rgba(23,19,15,.18);border-radius:0}
+.spec-thumb{margin-top:4px;border:1px solid var(--line-soft);overflow:hidden;border-radius:var(--radius)}
+.spec-thumb img{display:block;width:100%;height:auto;filter:sepia(.18) contrast(1.05) saturate(.85)}
+
+/* Sections */
+section.sig{padding:var(--sec-y) 0;position:relative}
+.sig-head{margin-bottom:36px;max-width:640px}
+.sig-num{font-family:var(--mono);font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--accent);display:block;margin-bottom:10px}
+.sig-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.15;letter-spacing:-.02em;color:var(--ink);margin:0 0 10px}
+.sig-sub{font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink-soft);margin:0;max-width:46ch}
+.hair{height:1px;background:var(--line-soft);margin:0;border:0}
+
+/* Editorial cards — letterpress, not SaaS */
+.ed-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border:1px solid var(--line-soft)}
+.ed-cell{padding:28px 26px;border-inline-start:1px solid var(--line-soft)}
+.ed-cell:first-child{border-inline-start:0}
+.ed-label{font-family:var(--mono);font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.ed-cell h3{font-family:var(--serif);font-weight:400;font-size:24px;margin:0 0 10px;color:var(--ink);letter-spacing:-.015em}
+.ed-cell p{margin:0;color:var(--ink-soft);font-size:16px;line-height:1.6}
+.ed-cell.ink{background:linear-gradient(180deg,#241d17 0%,#17130f 100%);color:var(--paper-hi);border-color:var(--ink)}
+.ed-cell.ink .ed-label{color:rgba(242,236,226,.55)}
+.ed-cell.ink h3{color:var(--paper-hi)}
+.ed-cell.ink p{color:rgba(242,236,226,.78)}
+
+/* Included as print signatures */
+.inc-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.inc-list li{display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line-soft)}
+.inc-k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--accent)}
+.inc-list b{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--ink);display:block;margin-bottom:4px}
+.inc-list small{font-size:15px;color:var(--muted);display:block;line-height:1.5}
+
+/* Regs */
+.regs{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--accent);border-bottom:1px solid var(--line-soft)}
+.reg{padding:22px 18px;border-inline-start:1px solid var(--line-soft)}
+.reg:first-child{border-inline-start:0}
+.reg .rn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+.reg p{margin:0;font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+
+.stamp{margin-top:28px;padding:20px 22px;position:relative;
+  border:1px dashed rgba(176,74,42,.55);background:var(--accent-wash);border-radius:var(--radius)}
+.stamp::before{content:"STAMP";position:absolute;top:-9px;inset-inline-start:16px;padding:0 8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--accent);background:var(--paper)}
+.stamp strong{font-family:var(--serif);font-weight:400;color:var(--ink)}
+.stamp p{margin:6px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.55}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-soft)}
+.step{padding:28px 24px;border-inline-start:1px solid var(--line-soft)}
+.step:first-child{border-inline-start:0}
+.step .n{font-family:var(--serif);font-size:48px;color:var(--accent);line-height:1;letter-spacing:-.04em}
+.step h3{font-family:var(--serif);font-weight:400;font-size:22px;margin:10px 0 8px;color:var(--ink)}
+.step p{margin:0;color:var(--ink-soft);font-size:15.5px;line-height:1.55}
+
+/* Buy / Specimen price block */
+.buy-block{display:grid;grid-template-columns:1.2fr 1fr;gap:0;border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.40) 0%,rgba(233,225,213,.22) 100%)}
+.buy-copy{padding:40px 36px;border-inline-end:1px solid var(--line-soft)}
+.buy-copy h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,34px);margin:0 0 16px;color:var(--ink)}
+.buy-amount{font-family:var(--serif);font-size:64px;font-weight:400;letter-spacing:-.04em;color:var(--ink);line-height:1}
+.buy-note{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.buy-list{list-style:none;margin:22px 0 0;padding:0}
+.buy-list li{padding:9px 0;border-bottom:1px solid var(--line-soft);font-size:15.5px;color:var(--ink-soft);
+  display:flex;gap:12px;align-items:baseline}
+.buy-list li::before{content:"—";color:var(--accent);font-family:var(--mono)}
+.buy-actions{padding:40px 32px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.buy-actions .btn{width:100%}
+.buy-phone{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);text-align:center;margin-top:6px}
+.buy-phone a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line-soft)}
+.buy-phone a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* FAQ */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line-soft);padding:0}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:20px 0;font-family:var(--serif);font-size:20px;color:var(--ink);letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:18px;color:var(--accent);transition:transform .28s var(--ease-out)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;color:var(--ink-soft);font-size:16px;line-height:1.6;max-width:58ch}
+
+/* Footer */
+.site-footer{position:relative;z-index:30;padding:var(--footer-y) var(--footer-x) 48px;
+  border-top:1px solid var(--line-soft);margin-top:40px}
+.foot-row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.foot-brand{font-family:var(--serif);font-size:18px;color:var(--ink);margin:0 0 6px}
+.foot-meta{font-family:var(--mono);font-size:var(--foot);color:var(--muted);line-height:1.7}
+.foot-meta a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line-soft)}
+.foot-meta a:hover{color:var(--accent)}
+.disc{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-soft);
+  font-family:var(--mono);font-size:11px;letter-spacing:.02em;color:var(--muted);line-height:1.65;max-width:72ch}
+
+/* Sticky mobile buy bar */
+.sticky{display:none}
+
+/* Appear / motion */
+.appear{opacity:1;animation-duration:var(--enter-dur);animation-fill-mode:both;animation-timing-function:var(--ease-out);animation-delay:var(--d,0s)}
+.appear--fade{animation-name:in-fade}
+.appear--soft{animation-name:in-soft}
+.appear--rise{animation-name:in-rise}
+.appear--bleed{animation-name:in-bleed;animation-duration:var(--bleed-dur);animation-timing-function:var(--ease-ink)}
+.is-in{animation:none !important;opacity:1 !important;transform:none !important;-webkit-mask-image:none !important;mask-image:none !important}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+
+@keyframes in-fade{from{opacity:0}to{opacity:1}}
+@keyframes in-soft{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes in-rise{from{opacity:0;transform:translateY(9px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes in-bleed{from{--bleed:0%;opacity:.55}to{--bleed:124%;opacity:1}}
+@keyframes in-rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes sheen{0%{transform:translate3d(-28%,0,0)}50%{transform:translate3d(28%,0,0)}100%{transform:translate3d(-28%,0,0)}}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-1.5%,1%)}50%{transform:translate(1%,-1.5%)}75%{transform:translate(-1%,1.5%)}100%{transform:translate(0,0)}}
+
+.tick.appear,.spec-rule.appear{animation-name:in-rule;transform-origin:100% 50%}
+
+/* Responsive */
+@media (min-width:1600px){
+  :root{--h1:clamp(48px,6.5vw,110px);--header-x:56px;--page-x:56px;--footer-x:56px;--aside-w:300px;--gap-col:56px;--hero-max:1180px}
+}
+@media (max-width:1279px){
+  :root{--header-x:32px;--page-x:32px;--footer-x:32px;--aside-w:244px;--gap-col:36px;--hero-max:900px}
+}
+@media (max-width:900px){
+  :root{--header-x:24px;--page-x:24px;--footer-x:24px;--hero-max:100%;--hero-y:36px;--sec-y:64px;--grain-op:.11}
+  .rule-v{display:none}
+  .nav-desk,.site-header > .cta{display:none}
+  .burger{display:flex}
+  .hero-grid{grid-template-columns:1fr}
+  aside.specimen{margin-top:28px;max-width:360px}
+  .ed-grid,.regs,.steps,.buy-block{grid-template-columns:1fr}
+  .ed-cell,.reg,.step{border-inline-start:0;border-top:1px solid var(--line-soft)}
+  .ed-cell:first-child,.reg:first-child,.step:first-child{border-top:0}
+  .buy-copy{border-inline-end:0;border-bottom:1px solid var(--line-soft);padding:32px 24px}
+  .buy-actions{padding:28px 24px}
+  .buy-amount{font-size:52px}
+  .sticky{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:50;gap:12px;align-items:center;justify-content:space-between;
+    padding:12px 16px;background:rgba(242,236,226,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink);transform:translateY(100%);transition:transform .4s var(--ease-out)}
+  .sticky.on{transform:none}
+  .sticky .btn{height:38px;padding:0 16px;font-size:11px}
+  .site-footer{padding-bottom:88px}
+}
+@media (max-width:560px){
+  :root{--header-x:20px;--page-x:20px;--footer-x:20px;--lead:15.5px;--grain-op:.09}
+  .marks{display:none}
+  .swatches i{width:22px;height:22px}
+  .regs{grid-template-columns:1fr}
+  .inc-list li{grid-template-columns:40px 1fr}
+  .foot-row{flex-direction:column;gap:10px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .appear,.ltr,.tick,.spec-rule,.reveal{opacity:1 !important;transform:none !important;-webkit-mask-image:none !important;mask-image:none !important}
+  .sheen{opacity:.14}
+  .grain{animation:none !important}
+  .sticky{transform:none}
+}
+</style>
+</head>
+<body style="background:#f2ece2;color:#17130f">
+<div class="paper" aria-hidden="true"></div>
+<canvas id="bloom" aria-hidden="true"></canvas>
+<div class="rules" aria-hidden="true"></div>
+<div class="rule-v" aria-hidden="true"></div>
+<div class="marks" aria-hidden="true"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+<div class="sheen" aria-hidden="true"></div>
+<div class="vign" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="page">
+<header class="site-header" id="hdr">
+  <a class="brand appear appear--fade" style="--d:.06s" href="#top">נגישות השירות<span class="brand-sub">פרק 01</span></a>
+  <nav class="nav-desk" aria-label="ניווט ראשי">
+    <a class="appear appear--fade" style="--d:.12s" href="#what">מה זה</a>
+    <a class="appear appear--fade" style="--d:.18s" href="#included">מה כלול</a>
+    <a class="appear appear--fade" style="--d:.24s" href="#regs">תקנות</a>
+    <a class="appear appear--fade" style="--d:.28s" href="#faq">שאלות</a>
+  </nav>
+  <a class="cta appear appear--rise" style="--d:.30s" href="#buy">לרכישה</a>
+  <button class="burger" type="button" aria-label="תפריט" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-label="תפריט">
+  <a href="#what">מה זה</a>
+  <a href="#included">מה כלול</a>
+  <a href="#regs">תקנות</a>
+  <a href="#how">איך קונים</a>
+  <a href="#faq">שאלות</a>
+  <a class="cta" href="#buy">לרכישה</a>
+</div>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow appear appear--fade" style="--d:.34s"><span class="tick appear" style="--d:.34s"></span>Specimen 01 · הדרכה דיגיטלית</div>
+        <h1 aria-label="הדרכה שנשארת. עם הרישום.">
+          <span class="line" id="h1l1" aria-hidden="true"></span>
+          <span class="line" id="h1l2" aria-hidden="true"></span>
+        </h1>
+        <p class="lead appear appear--soft" style="--d:1.18s">סרטון הדרכה בעברית על נגישות השירות לעובדים — עם בדיקת ידע וקובץ רישום השלמות, לשימוש פנימי בארגון. כמו גיליון שנלחץ פעם אחת ונשאר בתיק.</p>
+        <div class="actions">
+          <a class="btn btn--ink appear appear--rise" style="--d:1.30s" href="https://wa.me/972508228996?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%E2%80%94%20%D7%A4%D7%A8%D7%A7%201%20(%D7%94%D7%93%D7%A8%D7%9B%D7%94%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%A0%D7%99%D7%9D).%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%9C%D7%A8%D7%9B%D7%99%D7%A9%D7%94.">וואטסאפ</a>
+          <a class="btn btn--ghost appear appear--rise" style="--d:1.38s" href="#buy">לרכישה</a>
+        </div>
+        <div class="meta-chips appear appear--fade" style="--d:1.48s">
+          <span>כ־3 דקות</span><span>1080p · כתוביות</span><span>רישיון ארגוני</span><span>אופליין</span>
+        </div>
+      </div>
+
+      <aside class="specimen appear appear--soft" style="--d:1.02s" aria-labelledby="spec-h">
+        <h2 class="spec-title" id="spec-h">Specimen / פרק 01</h2>
+        <div class="spec-row appear appear--soft" style="--d:1.10s">
+          <span class="spec-price">₪2,400</span>
+          <span class="spec-tag">לפני מע״מ</span>
+        </div>
+        <div class="spec-rule appear" style="--d:1.12s"></div>
+        <div class="spec-row appear appear--soft" style="--d:1.18s">
+          <span class="spec-md">רישיון ארגוני</span>
+          <span class="spec-tag">חד־פעמי</span>
+        </div>
+        <div class="spec-rule appear" style="--d:1.20s"></div>
+        <div class="spec-row appear appear--soft" style="--d:1.26s">
+          <span class="spec-sm">Cotton paper · Oxide ink</span>
+          <span class="spec-tag">Ed. 01</span>
+        </div>
+        <div class="swatches" aria-hidden="true">
+          <i style="background:#17130f"></i>
+          <i style="background:#b04a2a"></i>
+          <i style="background:#c08a2e"></i>
+          <i style="background:#e9e1d5"></i>
+        </div>
+        <div class="spec-thumb">
+          <img src="poster.jpg" alt="פריים פתיחה — נגישות השירות פרק 1" width="560" height="315" loading="eager">
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="hair"></div>
+
+  <!-- WHAT -->
+  <section class="sig" id="what">
+    <div class="wrap">
+      <div class="sig-head reveal">
+        <span class="sig-num">Signature 01</span>
+        <h2>מה זה</h2>
+        <p class="sig-sub">פרק הדרכה קצר שמסביר לנותן השירות מה חשוב לדעת במפגש עם אדם עם מוגבלות — בשפה ברורה, עם הפניות לתקנות.</p>
+      </div>
+      <div class="ed-grid reveal">
+        <div class="ed-cell">
+          <p class="ed-label">למי</p>
+          <h3>רכזי נגישות, HR ומנהלי סניפים</h3>
+          <p>נותני שירות בארגונים שמחויבים בהדרכת עובדים — ורוצים רכיב קצר, ברור ומתועד.</p>
+        </div>
+        <div class="ed-cell ink">
+          <p class="ed-label">למה קצר</p>
+          <h3>שלוש דקות, בלי יום הדרכה</h3>
+          <p>אפשר לשלוח בערוץ פנימי, להקרין בישיבת צוות או להעלות לאינטראנט.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INCLUDED -->
+  <section class="sig" id="included">
+    <div class="wrap">
+      <div class="sig-head reveal">
+        <span class="sig-num">Signature 02</span>
+        <h2>מה כלול בחבילה</h2>
+        <p class="sig-sub">מוכן להרצה ביום הרכישה. בלי שרת ובלי התקנת תוכנה.</p>
+      </div>
+      <ul class="inc-list">
+        <li class="reveal"><span class="inc-k">01</span><div><b>סרטון 1080p</b><small>נגישות השירות · פרק 1, כתוביות צרובות בעברית</small></div></li>
+        <li class="reveal"><span class="inc-k">02</span><div><b>עמוד צפייה</b><small>נגן מקומי שנפתח בכל דפדפן</small></div></li>
+        <li class="reveal"><span class="inc-k">03</span><div><b>בדיקת ידע</b><small>3 שאלות, משוב מיידי, ניסיון חוזר</small></div></li>
+        <li class="reveal"><span class="inc-k">04</span><div><b>רישום השלמה + ייצוא CSV</b><small>שם ותאריך, לשמירה בתיק הארגון (תקנה 89(ז))</small></div></li>
+        <li class="reveal"><span class="inc-k">05</span><div><b>מדריך הפעלה בעברית + רישיון</b><small>לרכז/ת נגישות או משאבי אנוש · ארגון אחד, עובדים ללא הגבלה, לשימוש פנימי</small></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- REGS -->
+  <section class="sig" id="regs">
+    <div class="wrap">
+      <div class="sig-head reveal">
+        <span class="sig-num">Signature 03</span>
+        <h2>לאילו תקנות זה מתחבר</h2>
+        <p class="sig-sub">מידע כללי להדרכה, לא ייעוץ משפטי. הפרק מסייע ברכיב הדיגיטלי/בדפוס של ההדרכה השנתית.</p>
+      </div>
+      <div class="regs reveal">
+        <div class="reg"><span class="rn">תקנה 87</span><p>יידוע עובדים — איסור הפליה, שירות שוויוני ועיקרי החובות. בדפוס או באמצעים דיגיטליים.</p></div>
+        <div class="reg"><span class="rn">תקנה 88</span><p>הדרכה לנותני שירות ישירים ולממונים — סוגי מוגבלויות, פנייה והתנהגות, פעולות התאמה.</p></div>
+        <div class="reg"><span class="rn">תקנה 89</span><p>דרכי הכשרה, לרבות רענון בדפוס או באמצעים דיגיטליים לפחות אחת לשנה.</p></div>
+        <div class="reg"><span class="rn">תקנה 89(ז)</span><p>רישום העובדים שהודרכו ומועד ההדרכה — בחבילה יש כלי CSV לכך.</p></div>
+      </div>
+      <div class="stamp reveal">
+        <strong>חשוב — חותמת זהירות</strong>
+        <p>הפרק אינו מחליף התנסות חווייתית, הדרכה פרטנית על אמצעי עזר, או תכנית שאושרה בידי מורשה לנגישות השירות — ככל שאלה חלות על הארגון — ואינו מחליף מורשה לנגישות. תוכן הדרכה בלבד, לא ייעוץ משפטי.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section class="sig" id="how">
+    <div class="wrap">
+      <div class="sig-head reveal">
+        <span class="sig-num">Signature 04</span>
+        <h2>איך קונים</h2>
+        <p class="sig-sub">שלושה צעדים, בלי טפסים ובלי הרשמה.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="n">1</div><h3>פנייה</h3><p>שלחו הודעה בוואטסאפ או מייל עם שם הארגון ואיש/אשת קשר.</p></div>
+        <div class="step reveal"><div class="n">2</div><h3>תשלום</h3><p>תקבלו חשבונית; התשלום בהעברה בנקאית או ב־Bit.</p></div>
+        <div class="step reveal"><div class="n">3</div><h3>קבלת ZIP</h3><p>קישור להורדת החבילה המלאה נשלח אליכם — ואפשר להתחיל להדריך.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY -->
+  <section class="sig" id="buy">
+    <div class="wrap">
+      <div class="buy-block reveal">
+        <div class="buy-copy">
+          <h2>מחיר הרישיון</h2>
+          <div class="buy-amount">₪2,400</div>
+          <div class="buy-note">לפני מע״מ · רישיון ארגוני חד־פעמי</div>
+          <ul class="buy-list">
+            <li>סרטון, בחינה, רישום CSV, מדריך ורישיון</li>
+            <li>ארגון אחד · עובדים ללא הגבלה (שימוש פנימי)</li>
+            <li>מסירה דיגיטלית אחרי תשלום</li>
+          </ul>
+        </div>
+        <div class="buy-actions">
+          <a class="btn btn--oxide" href="https://wa.me/972508228996?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%E2%80%94%20%D7%A4%D7%A8%D7%A7%201%20(%D7%94%D7%93%D7%A8%D7%9B%D7%94%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99%D7%AA%20%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%A0%D7%99%D7%9D).%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%9C%D7%A8%D7%9B%D7%99%D7%A9%D7%94.">כתבו בוואטסאפ</a>
+          <a class="btn btn--ghost" href="mailto:neovex-net.com@neovex-net.com?subject=%D7%A8%D7%9B%D7%99%D7%A9%D7%94%20%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%D7%A4%D7%A8%D7%A7%201&body=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%A0%D7%A2%D7%9D%2C%0A%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A8%D7%9B%D7%99%D7%A9%D7%94%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%A0%D7%99%20%D7%9C%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%E2%80%94%20%D7%A4%D7%A8%D7%A7%201.%0A%0A%D7%A9%D7%9D%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%9F%3A%0A%D7%A9%D7%9D%20%D7%99%D7%A6%D7%A8%20%D7%A7%D7%A9%D7%A8%3A%0A">שלחו מייל</a>
+          <div class="buy-phone">או בטלפון <a href="tel:+972508228996">050-8228996</a> · נעם</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sig" id="faq">
+    <div class="wrap" style="max-width:780px">
+      <div class="sig-head reveal">
+        <span class="sig-num">Signature 05</span>
+        <h2>שאלות נפוצות</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>האם זה מחליף את כל חובת ההדרכה?</summary>
+          <p>לא. הפרק מסייע ברכיב ההדרכה בדפוס או באמצעים דיגיטליים ובכלי רישום. התנסות חווייתית והדרכה על אמצעי עזר — ככל שנדרשות — נשארות נפרדות.</p>
+        </details>
+        <details>
+          <summary>האם צריך מורשה לנגישות כדי להשתמש בזה?</summary>
+          <p>המוצר הוא תוכן הדרכה ואינו חוות דעת של מורשה. ארגונים שחייבים בתכנית מאושרת לפי התקנות צריכים להתייעץ עם מורשה לנגישות השירות שלהם.</p>
+        </details>
+        <details>
+          <summary>כמה עובדים אפשר להדריך?</summary>
+          <p>במסגרת רישיון הארגון הרוכש — ללא הגבלת מספר עובדים, לשימוש פנימי בלבד. אין להעביר לארגון אחר.</p>
+        </details>
+        <details>
+          <summary>איך מקבלים את הקבצים?</summary>
+          <p>אחרי התשלום נשלח קישור להורדת חבילת ZIP. אפשר להריץ אופליין מהמחשב או מהאינטראנט.</p>
+        </details>
+        <details>
+          <summary>יש גם פרק על מתו״ס?</summary>
+          <p>פרק על מבנים, תשתיות וסביבה מתוכנן כהמשך. אפשר לבקש עדכון כשיהיה מוכן.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-row">
+      <div>
+        <p class="foot-brand">נגישות השירות · פרק 1</p>
+        <div class="foot-meta">נעם · <a href="tel:+972508228996">050-8228996</a> · <a href="mailto:neovex-net.com@neovex-net.com?subject=%D7%A8%D7%9B%D7%99%D7%A9%D7%94%20%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%D7%A4%D7%A8%D7%A7%201&body=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%A0%D7%A2%D7%9D%2C%0A%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A8%D7%9B%D7%99%D7%A9%D7%94%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%A0%D7%99%20%D7%9C%D7%A0%D7%92%D7%99%D7%A9%D7%95%D7%AA%20%D7%94%D7%A9%D7%99%D7%A8%D7%95%D7%AA%20%E2%80%94%20%D7%A4%D7%A8%D7%A7%201.%0A%0A%D7%A9%D7%9D%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%9F%3A%0A%D7%A9%D7%9D%20%D7%99%D7%A6%D7%A8%20%D7%A7%D7%A9%D7%A8%3A%0A">שלחו מייל</a></div>
+      </div>
+      <div class="foot-meta" style="text-align:start">Letterpress edition · Local file only</div>
+    </div>
+    <div class="disc">תוכן הדרכה. אינו ייעוץ משפטי או חוות דעת נגישות, ואינו תחליף להתנסות חווייתית, להדרכה על אמצעי עזר או למורשה לנגישות השירות.</div>
+  </div>
+</footer>
+</div>
+
+<div class="sticky" id="sticky"><span>₪2,400 · לפני מע״מ</span><a class="btn btn--ink" href="#buy">לרכישה</a></div>
+
+<script>
+(function(){
+  window.__DEMO__ = { name:'vellum-nagishut', ready:false, frames:0, effects:[], errors:[] };
+  window.addEventListener('error', function(e){ window.__DEMO__.errors.push(String((e && e.message) || e)); });
+  window.__DEMO__.effects.push('ink-bleed-mask','ink-bloom-canvas','hairline-rules','paper-grain');
+
+  var root = document.documentElement;
+  var canvas = document.getElementById('bloom');
+  var ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
+  var burger = document.querySelector('.burger');
+  var menu = document.getElementById('menu');
+  var reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduced = reducedMQ.matches;
+  var t0 = performance.now();
+  var iw = 160, ih = 120, resizeQueued = false, painted = false;
+
+  /* —— H1 ink-bleed: wrap Hebrew glyphs —— */
+  var origins = [[34,62],[58,44],[46,70],[66,52],[38,50],[54,66]];
+  function bleedLine(el, text, baseDelay, spotWords){
+    if(!el) return;
+    var words = text.split(' ');
+    var gi = 0;
+    words.forEach(function(w, wi){
+      if(wi) el.appendChild(document.createTextNode(' '));
+      var word = document.createElement('span');
+      word.className = 'word';
+      var isSpot = spotWords && spotWords.indexOf(w) !== -1;
+      for(var i=0;i<w.length;i++){
+        var s = document.createElement('span');
+        s.className = 'ltr appear appear--bleed' + (isSpot ? ' ltr--spot' : '');
+        var ox = origins[gi % 6];
+        s.style.setProperty('--ox', ox[0]+'%');
+        s.style.setProperty('--oy', ox[1]+'%');
+        var d = baseDelay + gi * 0.032 + (isSpot ? 0.22 : 0);
+        s.style.setProperty('--d', d + 's');
+        s.textContent = w.charAt(i);
+        word.appendChild(s);
+        gi++;
+      }
+      el.appendChild(word);
+    });
+  }
+  bleedLine(document.getElementById('h1l1'), 'הדרכה שנשארת.', 0.46, null);
+  bleedLine(document.getElementById('h1l2'), 'עם הרישום.', 0.62, ['עם','הרישום.']);
+
+  /* —— Canvas blooms —— */
+  function makeBlob(r,g,b){
+    var c = document.createElement('canvas'); c.width=96; c.height=96;
+    var x = c.getContext('2d');
+    var g1 = x.createRadialGradient(48,48,0,48,48,48);
+    g1.addColorStop(0,'rgba('+r+','+g+','+b+',1)');
+    g1.addColorStop(0.34,'rgba('+r+','+g+','+b+',0.62)');
+    g1.addColorStop(0.62,'rgba('+r+','+g+','+b+',0.24)');
+    g1.addColorStop(1,'rgba('+r+','+g+','+b+',0)');
+    x.fillStyle=g1; x.fillRect(0,0,96,96);
+    return c;
+  }
+
+  var inkBlob, oxideBlob, blooms;
+  if(!ctx){ root.classList.add('no-canvas'); }
+  else {
+    inkBlob = makeBlob(23,19,15);
+    oxideBlob = makeBlob(176,74,42);
+    blooms = [
+      {blob:inkBlob,   bx:0.18, by:0.26, r:0.52, a:0.16, P:23, phase:0.0, ax:0.06, ay:0.05},
+      {blob:inkBlob,   bx:0.74, by:0.18, r:0.46, a:0.13, P:31, phase:1.7, ax:0.05, ay:0.06},
+      {blob:oxideBlob, bx:0.46, by:0.72, r:0.58, a:0.20, P:27, phase:3.1, ax:0.07, ay:0.04},
+      {blob:inkBlob,   bx:0.88, by:0.62, r:0.40, a:0.11, P:37, phase:4.4, ax:0.04, ay:0.05},
+      {blob:oxideBlob, bx:0.12, by:0.78, r:0.44, a:0.15, P:41, phase:2.2, ax:0.06, ay:0.05},
+      {blob:inkBlob,   bx:0.60, by:0.40, r:0.62, a:0.09, P:47, phase:5.6, ax:0.05, ay:0.04}
+    ];
+    blooms.forEach(function(b){
+      b.w1 = 6.2832 / b.P;
+      b.w2 = b.w1 / 1.37;
+      b.w3 = b.w1 / 0.61;
+    });
+  }
+
+  function resize(){
+    iw = Math.max(160, Math.round(window.innerWidth * 0.28));
+    ih = Math.max(120, Math.round(window.innerHeight * 0.28));
+    if(canvas){ canvas.width = iw; canvas.height = ih; }
+    resizeQueued = false;
+  }
+  function draw(t){
+    if(!ctx) return;
+    ctx.clearRect(0,0,iw,ih);
+    var mobile = window.innerWidth <= 900;
+    for(var i=0;i<blooms.length;i++){
+      var b = blooms[i];
+      var x = (b.bx + b.ax * Math.sin(t * b.w1 + b.phase)) * iw;
+      var y = (b.by + b.ay * Math.sin(t * b.w2 + b.phase * 0.6)) * ih;
+      var rMul = mobile ? 1.15 : 1;
+      var aMul = mobile ? 0.85 : 1;
+      var s = b.r * rMul * Math.min(iw,ih) * (1 + 0.12 * Math.sin(t * b.w3));
+      ctx.globalAlpha = b.a * aMul;
+      ctx.drawImage(b.blob, x - s/2, y - s/2, s, s);
+    }
+    ctx.globalAlpha = 1;
+  }
+  function step(now){
+    window.__DEMO__.frames += 1;
+    var paint = !document.hidden && (!reduced || !painted);
+    if(paint){
+      draw(reduced ? 6.0 : (now - t0) / 1000);
+      painted = true;
+      window.__DEMO__.ready = true;
+    }
+    requestAnimationFrame(step);
+  }
+  if(ctx){ resize(); requestAnimationFrame(step); }
+  else { window.__DEMO__.ready = true; }
+
+  window.addEventListener('resize', function(){
+    if(!resizeQueued){ resizeQueued = true; requestAnimationFrame(resize); }
+    if(window.innerWidth > 900 && menu){ menu.classList.remove('open'); if(burger) burger.setAttribute('aria-expanded','false'); }
+  });
+
+  /* Entrance fallback */
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      var appears = document.querySelectorAll('.appear');
+      var need = false;
+      for(var i=0;i<appears.length;i++){
+        var el = appears[i];
+        if(!el.getAnimations){ need = true; break; }
+        var anims = el.getAnimations();
+        var ok = false;
+        for(var j=0;j<anims.length;j++){
+          if(anims[j].playState === 'running' || anims[j].playState === 'finished'){ ok = true; break; }
+        }
+        if(!ok){ need = true; break; }
+      }
+      if(need){ for(var k=0;k<appears.length;k++) appears[k].classList.add('is-in'); }
+    });
+  });
+
+  /* Menu */
+  if(burger && menu){
+    burger.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+    });
+  }
+
+  /* Header scroll + sticky + reveal */
+  var hdr = document.getElementById('hdr');
+  var sticky = document.getElementById('sticky');
+  var buy = document.getElementById('buy');
+  function onScroll(){
+    if(hdr) hdr.classList.toggle('scrolled', window.scrollY > 12);
+    if(sticky && buy){
+      var r = buy.getBoundingClientRect();
+      sticky.classList.toggle('on', window.scrollY > 420 && !(r.top < window.innerHeight && r.bottom > 0));
+    }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.12, rootMargin:'0px 0px -32px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  if(reducedMQ.addEventListener){
+    reducedMQ.addEventListener('change', function(e){ reduced = e.matches; if(reduced) painted = false; });
+  }
+})();
+</script>
+</body>
+</html>
